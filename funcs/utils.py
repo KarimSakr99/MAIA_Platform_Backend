@@ -1,5 +1,8 @@
 import os
 from werkzeug.utils import secure_filename
+import matplotlib.pyplot as plt
+import numpy as np
+from celluloid import Camera
 
 
 def get_users():
@@ -26,5 +29,22 @@ def save_file(file, user, ill):
 def extract_info(request):
     file = request.files['file']
     if file is not None:
-        user = request.args['user']
+        user = request.form['user']
         return file, user
+
+
+def animate_volume(volume, pred):
+    fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(6, 4))
+    camera = Camera(fig)
+
+    for i in range(volume.shape[0]):
+        ax1.imshow(volume[i, :, :], 'bone')
+        ax1.axis('off')
+
+        ax2.imshow(volume[i, :, :], 'bone')
+        mask = np.ma.masked_where(pred[i] == 0, pred[i])
+        ax2.imshow(mask > 0, 'Wistia', alpha=0.8)
+        ax2.axis('off')
+        camera.snap()
+
+    return camera.animate()

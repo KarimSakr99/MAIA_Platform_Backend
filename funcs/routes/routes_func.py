@@ -7,7 +7,7 @@ from flask import request
 
 def new_illness():
     if request.method == 'POST':
-        ill = request.args['ill']
+        ill = request.form['ill']
         if ill not in get_ills():
             append_ill(ill)
             for user, ill in product(get_users(), get_ills()):
@@ -20,7 +20,7 @@ def new_illness():
 
 def new_user():
     if request.method == 'POST':
-        user = request.args['user']
+        user = request.form['user']
         if user not in get_users():
             os.mkdir(f'{os.getcwd()}/users/{user}')
             for i in get_ills():

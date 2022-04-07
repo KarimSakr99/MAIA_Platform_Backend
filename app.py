@@ -2,7 +2,7 @@ from flask import Flask
 from funcs.routes import new_illness, new_user
 from funcs.routes import skin, skin_cam
 from funcs.routes import chest, chest_cam
-
+from funcs.routes import hip, hip_animation
 
 app = Flask(__name__)
 
@@ -23,11 +23,19 @@ def call_skin(): return skin()
 def call_skin_cam(): return skin_cam()
 
 
-@app.route('/new_user', methods=['POST', 'GET'])
+@app.route('/hip', methods=['POST', 'GET'])
+def call_hip(): return hip()
+
+
+@ app.route('/hip/gif', methods=['POST', 'GET'])
+def call_hip_animation(): return hip_animation()
+
+
+@ app.route('/new_user', methods=['POST', 'GET'])
 def call_new_user(): return new_user()
 
 
-@app.route('/new_illness', methods=['POST', 'GET'])
+@ app.route('/new_illness', methods=['POST', 'GET'])
 def call_new_illness(): return new_illness()
 
 
