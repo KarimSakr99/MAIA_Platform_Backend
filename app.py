@@ -1,3 +1,4 @@
+import socket
 from flask import Flask
 from funcs.routes import new_illness, new_user
 from funcs.routes import skin, skin_cam
@@ -8,7 +9,7 @@ app = Flask(__name__)
 
 
 @app.get('/')
-def root(): return 'MAIA Running'
+def root(): return f'MAIA Running on {socket.gethostname()}'
 
 
 @app.post('/chest')
@@ -44,4 +45,4 @@ def call_new_illness(): return new_illness()
 
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', debug=True)
+    app.run(host='0.0.0.0', port=4444, debug=True)
