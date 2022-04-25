@@ -1,0 +1,13 @@
+# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+flask==2.0.3
+gunicorn==20.1.0
+torch==1.11.0
+torchcam==0.3.1
+torchvision==0.12.0
+numpy==1.21.5
+celluloid==0.2.0
+matplotlib==3.5.1
+nibabel==3.2.1
+medcam==0.1.21
+h5py==3.3.0
+opencv-python-headless==4.5.5.64

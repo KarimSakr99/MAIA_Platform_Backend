@@ -8,7 +8,7 @@ from torchcam.utils import overlay_mask
 from torchvision.transforms.functional import to_pil_image
 
 
-from . import save_file, extract_info, animate_volume
+from . import save_file, extract_info, animate_volume, extract_info
 from . import transform_image_skin, transform_image_pneumonia
 from . import prep_pneumonia_model, prep_skin_model
 from . import transform_image_hip, prep_hip_model
