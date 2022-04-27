@@ -7,6 +7,7 @@ services:
       context: maia_app
     # ports:
     #   - 8000:8000
+    command: gunicorn --bind 0.0.0.0:8000 --workers 3 wsgi:app
     volumes:
       - users:/app/users
     restart: always
