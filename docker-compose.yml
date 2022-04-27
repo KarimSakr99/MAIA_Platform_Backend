@@ -1,10 +1,10 @@
-version: '3.4'
+version: "3.8"
 
 services:
   app:
     image: maia:final
     build:
-      context: .
+      context: maia_app
     # ports:
     #   - 8000:8000
     volumes:
