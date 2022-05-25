@@ -1,5 +1,5 @@
 from flask import request
-from PIL import Image
+from PIL import Image, ImageOps
 import numpy as np
 import torch
 
@@ -23,6 +23,7 @@ def chest():
     user_ill_path, file_path = save_file(file, user, 'chest')
 
     img = Image.open(file_path).convert('RGB')
+    img = ImageOps.exif_transpose(img)
     with torch.no_grad():
         prop, cam = pneumonia_model(transform_image_pneumonia(img))
         prop, cam = prop.sigmoid().item(), cam.squeeze()
@@ -39,6 +40,7 @@ def skin():
     user_ill_path, file_path = save_file(file, user, 'skin')
 
     img = Image.open(file_path).convert('RGB')
+    img = ImageOps.exif_transpose(img)
     with torch.no_grad():
         prop, cam = skin_model(transform_image_skin(img))
         prop, cam = prop.sigmoid().item(), cam.squeeze()
